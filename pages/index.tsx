@@ -1,22 +1,26 @@
 import Head from "next/head";
-import Image from "next/image";
+import Link from "next/link";
 import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
-import { Footer } from "../components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
-const steps = [
-  "step6",
-  "step7",
-  "step8",
-  "step9",
-  "step10",
-  "step10",
-  "step11",
-  "step12",
-  "step13",
-];
-const listSteps = steps.map((item) => <li>{item}</li>);
+const number = [6, 7, 8, 9, 10, 11, 12, 13]; //連番配列を自動生成したい
+const listSteps = number.map((item) => (
+  <li className="p-2" key={item - 6}>
+    {"Step" + item}
+  </li>
+));
+// const start = 5;
+// const end = 13;
+// const listSteps = (start: any, end: number) => {
+//   const l = [];
+//   for (let i = start; i < end; i++) {
+//     l.push("step" + i);
+//   }
+//   console.log(l);
+//   console.log("aaa");
+
+//   return l;
+// };
 
 export default function Home() {
   return (
@@ -25,10 +29,10 @@ export default function Home() {
         <title>Todo</title>
       </Head>
       <main>
-        <div className="text-yellow-300 text-5xl font-semibold p-16">
+        <div className="text-red-500 text-5xl font-semibold p-16">
           TodoList!!
         </div>
-        <div className="text-2xl list-disc p-5">{listSteps}</div>
+        <ul className="text-2xl list-disc p-10">{listSteps}</ul>
       </main>
     </>
   );
