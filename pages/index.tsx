@@ -4,8 +4,8 @@ import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 const number = [6, 7, 8, 9, 10, 11, 12, 13];
-const listSteps = number.map((item) => (
-  <Link href={`/Step${item}`}>
+const listSteps = number.map((item, index) => (
+  <Link href={`/Step${item}`} key={index}>
     <li className="p-2" key={item - 6}>
       Step{item}
     </li>
