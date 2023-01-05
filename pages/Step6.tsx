@@ -4,6 +4,7 @@ import { Adder } from "../components/Adder";
 import { GoTop } from "../components/GoTop";
 
 export default function Step6() {
+  //プルリクエストテスト
   return (
     <>
       <Head>
