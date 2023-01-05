@@ -4,7 +4,7 @@ export function GoTop() {
   return (
     <>
       <Link href="/">
-        <div className="text-center p-20 text-xl">Go Top</div>
+        <div className="p-10 text-xl bg-gray-500">Go Top</div>
       </Link>
     </>
   );
