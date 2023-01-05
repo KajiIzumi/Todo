@@ -1,7 +1,3 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
 import { useState } from "react";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -9,14 +5,19 @@ import { useState } from "react";
 export function Adder() {
   const [cnt, setCnt] = useState(0);
 
-  const handleClick = () => {
+  const addClick = () => {
     setCnt((cnt) => cnt + 1);
+  };
+
+  const resetClick = () => {
+    setCnt((cnt) => (cnt = 0));
   };
 
   return (
     <>
       <div className="text-center">{cnt}</div>
-      <button onClick={handleClick}>addButton</button>
+      <button onClick={addClick}>add</button>
+      <button onClick={resetClick}>Reset</button>
     </>
   );
 }
