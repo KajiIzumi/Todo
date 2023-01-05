@@ -3,24 +3,14 @@ import Link from "next/link";
 import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
-const number = [6, 7, 8, 9, 10, 11, 12, 13]; //連番配列を自動生成したい
+const number = [6, 7, 8, 9, 10, 11, 12, 13];
 const listSteps = number.map((item) => (
-  <li className="p-2" key={item - 6}>
-    {"Step" + item}
-  </li>
+  <Link href={`/Step${item}`}>
+    <li className="p-2" key={item - 6}>
+      Step{item}
+    </li>
+  </Link>
 ));
-// const start = 5;
-// const end = 13;
-// const listSteps = (start: any, end: number) => {
-//   const l = [];
-//   for (let i = start; i < end; i++) {
-//     l.push("step" + i);
-//   }
-//   console.log(l);
-//   console.log("aaa");
-
-//   return l;
-// };
 
 export default function Home() {
   return (
