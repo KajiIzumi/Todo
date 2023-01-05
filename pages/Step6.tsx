@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import { Adder } from "../components/Adder";
+import { GoTop } from "../components/GoTop";
 
-export default function addNum() {
+export default function Step6() {
   return (
     <>
       <Head>
@@ -11,9 +12,7 @@ export default function addNum() {
       <main>
         <div className="text-center p-20 text-3xl">Step6 addNum</div>
         <Adder />
-        <Link href="/">
-          <div className="text-center p-20 text-xl">Go Top</div>
-        </Link>
+        <GoTop />
       </main>
     </>
   );
