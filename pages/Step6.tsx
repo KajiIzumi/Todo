@@ -8,11 +8,7 @@ export default function Step6() {
   //プルリクエストテスト
   return (
     <>
-      <Head>
-        <title>Step6</title>
-      </Head>
       <main>
-        {/* <div className="text-center p-20 text-3xl">Step6 addNum</div> */}
         <Header stepNum="6" title="addNum" />
         <Adder />
         <GoTop />
