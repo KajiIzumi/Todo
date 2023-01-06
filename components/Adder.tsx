@@ -10,7 +10,7 @@ export function Adder() {
   };
 
   const resetClick = () => {
-    setCnt((cnt) => (cnt = 0));
+    setCnt(0);
   };
 
   return (
