@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function Header(props: { stepNum: number; title: string }) {
+export default function Header(props: { stepNum: string; title: string }) {
   return (
     <>
       <Head>
