@@ -1,12 +1,14 @@
 import { SetStateAction, useState } from "react";
+import TodoDisp from "./TodoDisp";
+import Todo from "./TodoDisp";
 
 export default function CreateTodo() {
   const [text, setText] = useState(""); //text: input入力された文章
   const [Todo, setTodo] = useState<string[]>([]); //Todo: <li>要素の配列
+
   const inputHandler = (e: { target: { value: SetStateAction<string> } }) => {
     setText(e.target.value);
   };
-
   const clickEnter = () => {
     const addTodo = [...Todo, text];
     setTodo(addTodo);
@@ -23,11 +25,12 @@ export default function CreateTodo() {
       <button onClick={clickEnter} className="bg-green-500 text-3xl">
         Enter
       </button>
-      <ul className="text-2xl list-disc p-10">
+      {/* <ul className="text-2xl list-disc p-10">
         {Todo.map((text, index) => {
           return <li key={index}>{text}</li>;
         })}
-      </ul>
+      </ul> */}
+      <TodoDisp todoList={Todo} />
     </>
   );
 }
@@ -35,7 +38,7 @@ export default function CreateTodo() {
 // 文字を打ち込む：<input>
 // ↓
 // Enterをクリックする
-// ↓
-// テキストのTODOリストを生成する
+// ↓propsでTodo配列をTodoコンポーネントに渡す
+// テキストのTODOリストを生成する（Todoコンポーネント）
 // ↓
 // mapで<li>要素配列にして<ul></ul>に表示する
