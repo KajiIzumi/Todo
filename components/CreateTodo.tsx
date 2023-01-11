@@ -1,6 +1,5 @@
 import { SetStateAction, useState } from "react";
 import TodoDisp from "./TodoDisp";
-import Todo from "./TodoDisp";
 
 export default function CreateTodo() {
   const [text, setText] = useState(""); //text: input入力された文章
@@ -10,8 +9,9 @@ export default function CreateTodo() {
     setText(e.target.value);
   };
   const clickEnter = () => {
-    const addTodo = [...Todo, text];
-    setTodo(addTodo);
+    setTodo((prevVal) => {
+      return [...prevVal, text];
+    });
   };
 
   return (
@@ -25,11 +25,6 @@ export default function CreateTodo() {
       <button onClick={clickEnter} className="bg-green-500 text-3xl">
         Enter
       </button>
-      {/* <ul className="text-2xl list-disc p-10">
-        {Todo.map((text, index) => {
-          return <li key={index}>{text}</li>;
-        })}
-      </ul> */}
       <TodoDisp todoList={Todo} />
     </>
   );
