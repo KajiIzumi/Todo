@@ -1,25 +1,39 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, SyntheticEvent, useState } from "react";
+import Calender from "./Calender";
+import CheckBox from "./CheckBox";
+import InputTask from "./InputTask";
+import * as React from "react";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 export default function CreateUsefulTodo() {
-  const [taskText, setTaskText] = useState("task"); //text: input入力された文章
-  const [dateText, setDateText] = useState("date");
-  const [priority, setPriority] = useState(false);
-  const [todo, setTodo] = useState<object[]>([]); //Todo: <li>要素の配列
+  interface todoType {
+    date: string;
+    task: string;
+    priority: boolean;
+  }
+  const [priority, setPriority] = useState<boolean>(true);
+  const [todo, setTodo] = useState<todoType[]>([]); //Todo: <li>要素の配列
+  const [dateVal, setDateVal] = useState<Date | string>("2023-01-01"); //calenderにpropsで渡して操作
+  const [taskText, setTaskText] = useState("task"); //InputTaskにpropsで渡して操作操作
 
+  // ↓InputTaskに渡す
   const taskInputHandler = (e: {
     target: { value: SetStateAction<string> };
   }) => {
     setTaskText(e.target.value);
   };
+  // ↓Calenderに渡す
   const dateInputHandler = (e: {
-    target: { value: SetStateAction<string> };
+    target: { value: SetStateAction<string | Date> };
   }) => {
-    setDateText(e.target.value);
+    setDateVal(e.target.value);
   };
 
   const clickEnter = () => {
-    const todoObj: Object = {
-      date: dateText,
+    const todoObj: todoType = {
+      date: dateVal.toString(),
       task: taskText,
       priority: priority,
     };
@@ -29,24 +43,30 @@ export default function CreateUsefulTodo() {
 
   return (
     <>
-      <input
-        type="text"
+      <InputTask
         value={taskText}
-        onChange={taskInputHandler}
-        className="text-3xl bg-blue-300"
-      />
-      <input
-        type="text"
-        value={dateText}
-        onChange={dateInputHandler}
-        className="text-3xl bg-red-300"
+        onChange={(e: { target: { value: SetStateAction<string> } }) => {
+          taskInputHandler(e);
+        }}
       />
 
+      <Calender
+        value={dateVal}
+        onChange={(e: { target: { value: SetStateAction<string | Date> } }) =>
+          dateInputHandler(e)
+        }
+      />
+      {/* 
       <input
         type="checkbox"
         checked={priority}
         onChange={() => setPriority((prevState) => !prevState)}
         className="w-5 h-5 flex bg-gray-300"
+      /> */}
+
+      <CheckBox
+        value={priority}
+        onChange={() => setPriority((prevState) => !prevState)}
       />
 
       <button onClick={clickEnter} className="bg-green-500 text-3xl">
@@ -62,13 +82,13 @@ export default function CreateUsefulTodo() {
           </tr>
         </thead>
         <tbody>
-          {todo.map((obj, index) => {
+          {todo.map((obj: todoType, index: number) => {
+            // console.log(obj);
             return (
               <tr key={index} className="text-xl">
                 <td>{obj.date}</td>
                 <td>{obj.task}</td>
                 <td>{obj.priority.toString()}</td>
-                {/* エラー： Property '上記3つのプロパティ' does not exist on type 'object'*/}
               </tr>
             );
           })}
@@ -81,8 +101,8 @@ export default function CreateUsefulTodo() {
 // --メモ
 // 文字+期限+重要度を入力
 // [
-// { TODO: 入力文字,
-//   期限:  期限,
+// { TODO: 入力文字, //inputtaskから取得
+//   期限:  期限,　//calenderから取得
 //   重要度: 重要度 }, ...
 // ]
 // ↓
