@@ -10,12 +10,12 @@ export function Adder() {
   };
 
   const resetClick = () => {
-    setCnt((cnt) => (cnt = 0));
+    setCnt(0);
   };
 
   return (
     <>
-      <div className="text-center">{cnt}</div>
+      <div className="text-center text-5xl p-5">{cnt}</div>
       <button onClick={addClick}>add</button>
       <button onClick={resetClick}>Reset</button>
     </>

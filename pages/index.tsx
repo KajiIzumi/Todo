@@ -23,6 +23,9 @@ export default function Home() {
           TodoList!!
         </div>
         <ul className="text-2xl list-disc p-10">{listSteps}</ul>
+        <Link href="/MUItest">
+          <button className="text-xl bg-red-300 p-3">MUItest</button>
+        </Link>
       </main>
     </>
   );
